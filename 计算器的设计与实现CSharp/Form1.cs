@@ -28,7 +28,7 @@ namespace 计算器的设计与实现CSharp
 
         string input="";
         /// <summary>
-        /// 监听输入函数
+        /// 监听输入函数 
         /// </summary>
         /// <param name="c">输入的字符</param>
         void Input(char c)
