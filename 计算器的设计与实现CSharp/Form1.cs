@@ -135,6 +135,16 @@ namespace 计算器的设计与实现CSharp
             Input('.');
             ShowMessage();
         }
+        private void btnleft_Click(object sender, EventArgs e)
+        {
+            Input('(');
+            ShowMessage();
+        }
+        private void btnright_Click(object sender, EventArgs e)
+        {
+            Input(')');
+            ShowMessage();
+        }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -155,6 +165,8 @@ namespace 计算器的设计与实现CSharp
         {
             switch (sign)
             {
+                case '(':                       // when in stack, the priority of '(' is smallest
+                    return 0;
                 case '+':
                 case '-':
                     return 1;//加减运算的优先级为1
@@ -235,19 +247,44 @@ namespace 计算器的设计与实现CSharp
                         else                                //运算符栈不为空，需要判断运算符的优先级
                         {
                             #region 判断运算优先级
-                            if (GetSignYouXianJi(input[i]) > GetSignYouXianJi(signStack.Peek()))
+                            if (input[i] == '(')
                             {
-                                signStack.Push(input[i]);
+                                signStack.Push('(');
+                            }
+                            else if (input[i] == ')')
+                            {
+                                // pop until ')'
+                                char tempSign;
+                                while (true)
+                                {
+                                    tempSign = signStack.Pop();
+                                    if (tempSign != '(')
+                                    {
+                                        houZhuiBiaoDaShiQueue.Enqueue(Convert.ToString(tempSign));
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
                             }
                             else
                             {
-                                while (true)
+                                if (GetSignYouXianJi(input[i]) > GetSignYouXianJi(signStack.Peek()))
                                 {
-                                    houZhuiBiaoDaShiQueue.Enqueue(Convert.ToString(signStack.Pop()));
-                                    if (signStack.Count == 0 || GetSignYouXianJi(input[i]) > GetSignYouXianJi(signStack.Peek()))
-                                        break;
+                                    signStack.Push(input[i]);
                                 }
-                                signStack.Push(input[i]);
+                                else
+                                {
+                                    while (true)
+                                    {
+                                        houZhuiBiaoDaShiQueue.Enqueue(Convert.ToString(signStack.Pop()));
+                                        if (signStack.Count == 0 || GetSignYouXianJi(input[i]) > GetSignYouXianJi(signStack.Peek()))
+                                            break;
+                                    }
+                                    signStack.Push(input[i]);
+                                }
+                                
                             }
                             #endregion
                         }
@@ -303,6 +340,10 @@ namespace 计算器的设计与实现CSharp
                                 MessageBox.Show("Error: 0是被除数！");
                             }
                             break;
+                        case '(':
+                            break;
+                        case ')':
+                            break;
                         default:
                             MessageBox.Show("未知错误！");
                             break;
@@ -321,5 +362,7 @@ namespace 计算器的设计与实现CSharp
                 throw;
             }
         }
+
+
     }
 }

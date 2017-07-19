@@ -46,6 +46,8 @@
             this.btnRide = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnleft = new System.Windows.Forms.Button();
+            this.btnright = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtBox
@@ -54,7 +56,7 @@
             this.txtBox.Location = new System.Drawing.Point(52, 36);
             this.txtBox.Multiline = true;
             this.txtBox.Name = "txtBox";
-            this.txtBox.Size = new System.Drawing.Size(441, 72);
+            this.txtBox.Size = new System.Drawing.Size(412, 72);
             this.txtBox.TabIndex = 0;
             this.txtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -228,12 +230,34 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnleft
+            // 
+            this.btnleft.Location = new System.Drawing.Point(475, 45);
+            this.btnleft.Name = "btnleft";
+            this.btnleft.Size = new System.Drawing.Size(75, 23);
+            this.btnleft.TabIndex = 18;
+            this.btnleft.Text = "(";
+            this.btnleft.UseVisualStyleBackColor = true;
+            this.btnleft.Click += new System.EventHandler(this.btnleft_Click);
+            // 
+            // btnright
+            // 
+            this.btnright.Location = new System.Drawing.Point(475, 85);
+            this.btnright.Name = "btnright";
+            this.btnright.Size = new System.Drawing.Size(75, 23);
+            this.btnright.TabIndex = 19;
+            this.btnright.Text = ")";
+            this.btnright.UseVisualStyleBackColor = true;
+            this.btnright.Click += new System.EventHandler(this.btnright_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(562, 316);
+            this.Controls.Add(this.btnright);
+            this.Controls.Add(this.btnleft);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnRide);
@@ -279,6 +303,8 @@
         private System.Windows.Forms.Button btnRide;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnleft;
+        private System.Windows.Forms.Button btnright;
     }
 }
 
